@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dgx1jgyj1k3pk"]
+[gd_scene load_steps=7 format=3 uid="uid://dgx1jgyj1k3pk"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_fabv3"]
 [ext_resource type="PackedScene" uid="uid://beci53k3tl6oe" path="res://scenes/player.tscn" id="1_tjpbv"]
@@ -8,44 +8,42 @@
 size = Vector2(1201, 13)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l72l0"]
-size = Vector2(23.5, 647.5)
+size = Vector2(24, 648)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j2jnm"]
 size = Vector2(25, 648)
-
-[sub_resource type="GDScript" id="GDScript_5ybee"]
-script/source = "extends CharacterBody2D
-
-func _ready():
-	pass
-
-func _process(delta):
-	pass
-"
 
 [node name="game" type="Node2D"]
 script = ExtResource("1_fabv3")
 
 [node name="top" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="top"]
 position = Vector2(576.5, -6.5)
 shape = SubResource("RectangleShape2D_pe5l1")
 
 [node name="bottom" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bottom"]
 position = Vector2(576, 655)
 shape = SubResource("RectangleShape2D_pe5l1")
 
 [node name="left" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="left"]
-position = Vector2(-12.25, 324.25)
+position = Vector2(-12, 324)
 shape = SubResource("RectangleShape2D_l72l0")
 
 [node name="right" type="Area2D" parent="."]
 position = Vector2(1152, 0)
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="right"]
 position = Vector2(12.5, 324)
@@ -53,13 +51,32 @@ shape = SubResource("RectangleShape2D_j2jnm")
 
 [node name="player1" parent="." instance=ExtResource("1_tjpbv")]
 position = Vector2(30, 330)
-script = SubResource("GDScript_5ybee")
 
 [node name="player2" parent="." instance=ExtResource("1_tjpbv")]
 position = Vector2(1124, 330)
+side = "p2"
 
 [node name="ball" parent="." instance=ExtResource("2_dj3d4")]
 position = Vector2(580, 320)
+collision_mask = 3
+
+[node name="Label" type="Label" parent="."]
+offset_left = 269.0
+offset_top = 10.0
+offset_right = 296.0
+offset_bottom = 46.0
+scale = Vector2(8.32655, 5.31316)
+text = "0
+"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 804.0
+offset_top = 6.0
+offset_right = 831.0
+offset_bottom = 42.0
+scale = Vector2(8.32655, 5.31316)
+text = "0
+"
 
 [connection signal="body_entered" from="top" to="." method="_on_top_body_entered"]
 [connection signal="body_entered" from="bottom" to="." method="_on_bottom_body_entered"]

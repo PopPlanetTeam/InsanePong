@@ -6,6 +6,8 @@
 size = Vector2(22, 20)
 
 [node name="ball" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 0
 script = ExtResource("1_cqvgu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
